@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">CaffeApplicationJava</string>
+    <string name="greeting_text_view">Welcome to our caffe app! But firstly you need to register to order drink.</string>
+    <string name="user_name_TextInputLayout">User name\n</string>
+    <string name="user_password_TextInputLayout">Password</string>
+    <string name="enter_a_password_password_input_layout">Please enter a password.</string>
+    <string name="enter_button">ENTER</string>
+    <string name="radio_button_text_tea">Tea</string>
+    <string name="radio_button_text_coffee">Coffee</string>
+    <string name="additives">What do you want to add in your %s?</string>
+    <string name="greeting_user_make_order_activity">Hello %s, what do you want for today?</string>
+    <string name="check_box_milk">Milk</string>
+    <string name="check_box_sugar">Sugar</string>
+    <string name="check_box_lemon">Lemon</string>
+    <string name="choose_drink_type">"Which type of drink do you want? "</string>
+    <string name="make_order_button">Make Order</string>
+    <string name="text_view_additives">Additives:</string>
+    <string name="text_view_drink_type">Drink type:</string>
+    <string name="text_view_drink">Drink:</string>
+    <string name="text_view_name">Name:</string>
+    <array name="types_of_tea">
+        <item>Green</item>
+        <item>Black</item>
+    </array>
+    <array name="types_of_coffee">
+        <item>Americano</item>
+        <item>Cappuccino</item>
+        <item>Latte</item>
+    </array>
+</resources>
