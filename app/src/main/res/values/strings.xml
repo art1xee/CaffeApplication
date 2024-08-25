@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CaffeApplicationJava</string>
     <string name="greeting_text_view">Welcome to our caffe app! But firstly you need to register to order drink.</string>
-    <string name="user_name_TextInputLayout">User name\n</string>
+    <string name="user_name_TextInputLayout">User name</string>
     <string name="user_password_TextInputLayout">Password</string>
     <string name="enter_a_password_password_input_layout">Please enter a password.</string>
     <string name="enter_button">ENTER</string>
