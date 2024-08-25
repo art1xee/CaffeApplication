@@ -1,11 +1,11 @@
-package com.example.caffeapplicationjava;
+package com.example.caffeapplicationjava.utility;
 
 import android.text.Editable;
 import android.text.TextWatcher;
 
 
 
-public abstract class DefaultListener implements TextWatcher {
+public class DefaultListener implements TextWatcher {
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {

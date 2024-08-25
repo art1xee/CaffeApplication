@@ -1,7 +1,6 @@
-package com.example.caffeapplicationjava;
+package com.example.caffeapplicationjava.mainAppFiles;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
@@ -9,6 +8,9 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.caffeapplicationjava.databinding.ActivityMainBinding;
+import com.example.caffeapplicationjava.utility.DefaultListener;
+import com.example.caffeapplicationjava.utility.IntentUtility;
+import com.example.caffeapplicationjava.utility.TextInputLayoutUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,6 +18,7 @@ import java.util.regex.Pattern;
 public class RegistrationActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +58,14 @@ public class RegistrationActivity extends AppCompatActivity {
                         TextInputLayoutUtils.setHelperText(binding.passwordInputLayout, "Perfect password!");
                         TextInputLayoutUtils.setErrorText(binding.passwordInputLayout, "");
                     } else {
-                        TextInputLayoutUtils.setHelperText(binding.passwordInputLayout,"");
+                        TextInputLayoutUtils.setHelperText(binding.passwordInputLayout, "");
                     }
                 } else {
                     TextInputLayoutUtils.updateHelperTextColor(binding.passwordInputLayout, RegistrationActivity.this, android.R.color.holo_red_dark);// меняю цвет setHelperText
                     TextInputLayoutUtils.setHelperText(binding.passwordInputLayout, "Create a more stronger password.");
                 }
             }
+
             @Override
             public void afterTextChanged(Editable s) {
                 String password = s.toString();
@@ -81,6 +85,7 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
     }
+
     private void isAllFieldsFill() {//метод который проверят все ли поля заполнены, если - да, то выполняется else, а если - нет, то мы просим пользователя заполнить все незаполненные поля.
         String userName = binding.usernameEditText.getEditableText().toString().trim();
         String userPassword = binding.passwordEditText.getEditableText().toString().trim();
@@ -96,13 +101,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 TextInputLayoutUtils.setErrorText(binding.passwordInputLayout, "Enter this field.");
             }
         } else {
-            launchOrderDrinkScreen(userName);
+            IntentUtility.navigateToMakeOrderActivity(this, userName);
         }
     }
 
-    private void launchOrderDrinkScreen(String userName) { //метод для переключения на MakeOrderActivity screen, если условие в методе isAllFieldsFill равен true.
-        Intent intent = new Intent(RegistrationActivity.this, MakeOrderActivity.class);
-        intent.putExtra("userName", userName);
-        startActivity(intent);
-    }
 }

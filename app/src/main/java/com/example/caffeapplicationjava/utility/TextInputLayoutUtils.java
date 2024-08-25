@@ -1,11 +1,11 @@
-package com.example.caffeapplicationjava;
+package com.example.caffeapplicationjava.utility;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
 
 import com.google.android.material.textfield.TextInputLayout;
 
-public abstract class TextInputLayoutUtils {
+public class TextInputLayoutUtils {
 
 
     public static void updateHelperTextColor(TextInputLayout inputLayout, Context context, int colorResId) {
