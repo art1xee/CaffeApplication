@@ -14,7 +14,7 @@
         android:padding="32dp"
         android:text="@string/greeting_text_view"
         android:textAlignment="center"
-        android:textColor="#3E2723 "
+        android:textColor="#3E2723"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/username_input_layout"
         app:layout_constraintEnd_toEndOf="parent"
