@@ -1,19 +1,17 @@
 package com.example.caffeapplicationjava;
 
 
-import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Editable;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import com.example.caffeapplicationjava.databinding.ActivityMainBinding;
-import com.example.caffeapplicationjava.mainAppFiles.MakeOrderActivity;
 import com.example.caffeapplicationjava.util.edittext.watcher.DefaultTextWatcher;
 import com.example.caffeapplicationjava.util.edittext.watcher.username.UsernameChangeListener;
 import com.example.caffeapplicationjava.util.edittext.watcher.username.UsernameTextWatcher;
+import com.example.caffeapplicationjava.utility.IntentUtility;
+import com.example.caffeapplicationjava.utility.TextInputLayoutUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,6 +25,7 @@ public class RegistrationActivity extends AppCompatActivity implements UsernameC
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         // метод которая вызывает ошибку, если в usernameLayout символов будет больше чем 20
         binding.usernameEditText.addTextChangedListener(new UsernameTextWatcher(this));
 
@@ -43,15 +42,15 @@ public class RegistrationActivity extends AppCompatActivity implements UsernameC
                     boolean isPwdContainsSpeChar = matcher.find();
 
                     if (isPwdContainsSpeChar) {
-                        updatePasswordHelperTextColor(android.R.color.holo_green_dark); // меняю цвет setHelperText
-                        setHelperTextPasswordLayout("Perfect password!");
-                        setErrorTextPasswordLayout("");
+                        TextInputLayoutUtils.updateHelperTextColor(binding.passwordInputLayout, RegistrationActivity.this, android.R.color.holo_green_dark);// меняю цвет setHelperText
+                        TextInputLayoutUtils.setErrorText(binding.passwordInputLayout, "Perfect password!");
+                        TextInputLayoutUtils.setErrorText(binding.passwordInputLayout, "");
                     } else {
-                        setHelperTextPasswordLayout("");
+                        TextInputLayoutUtils.setHelperText(binding.passwordInputLayout, "");
                     }
                 } else {
-                    updatePasswordHelperTextColor(android.R.color.holo_red_dark); // меняю цвет setHelperText
-                    setHelperTextPasswordLayout("Create a more stronger password.");
+                    TextInputLayoutUtils.updateHelperTextColor(binding.passwordInputLayout, RegistrationActivity.this, android.R.color.holo_red_dark);
+                    TextInputLayoutUtils.setHelperText(binding.passwordInputLayout, "Create a more stronger password.");
                 }
             }
 
@@ -59,8 +58,10 @@ public class RegistrationActivity extends AppCompatActivity implements UsernameC
             public void afterTextChanged(Editable s) {
                 String password = s.toString();
                 if (password.isEmpty()) {
-                    updatePasswordHelperTextColor(android.R.color.holo_green_dark);// меняю цвет setHelperText
-                    setHelperTextPasswordLayout("Please enter a password.");
+
+                    TextInputLayoutUtils.updateHelperTextColor(binding.passwordInputLayout, RegistrationActivity.this, android.R.color.holo_green_dark);
+                    TextInputLayoutUtils.setHelperText(binding.passwordInputLayout, "Please enter a password.");
+
                 }
             }
         });
@@ -72,34 +73,11 @@ public class RegistrationActivity extends AppCompatActivity implements UsernameC
     @Override
     public void onNameChanged(String name) {
         if (name.length() >= 20) {
-            setErrorTextUserLayout("No more!");
+            TextInputLayoutUtils.setErrorText(binding.usernameInputLayout, "No more!");
         } else {
-            setErrorTextUserLayout(null);
+
+            TextInputLayoutUtils.setErrorText(binding.usernameInputLayout, null);
         }
-    }
-
-    private void setErrorTextUserLayout(String text) { //метод, который позволяет написать любой текст в ошибку (работает только в usernameLayout)
-        binding.usernameInputLayout.setError(text);
-    }
-
-    private void setErrorTextPasswordLayout(String text) {//метод, который позволяет написать любой текст в ошибку (работает только в passwordLayout)
-        binding.passwordInputLayout.setError(text);
-    }
-
-    private void updateUsernameHelperTextColor(int color) {  //метод который меняет цвет helperText в username layout
-        binding.usernameInputLayout.setHelperTextColor(ColorStateList.valueOf(ContextCompat.getColor(RegistrationActivity.this, color)));
-    }
-
-    private void updatePasswordHelperTextColor(int color) {  //метод который меняет цвет helperText в password layout
-        binding.passwordInputLayout.setHelperTextColor(ColorStateList.valueOf(ContextCompat.getColor(RegistrationActivity.this, color)));
-    }
-
-    private void setHelperTextPasswordLayout(String text) { //метод, который позволяет написать любой текст в хелпер метод (работает только в passwordLayout)
-        binding.passwordInputLayout.setHelperText(text);
-    }
-
-    private void setHelperTextUserNameLayout(String text) { //метод, который позволяет написать любой текст в хелпер метод (работает только в usernameLayout)
-        binding.usernameInputLayout.setHelperText(text);
     }
 
     private void isAllFieldsFill() {//метод который проверят все ли поля заполнены, если - да, то выполняется else, а если - нет, то мы просим пользователя заполнить все незаполненные поля.
@@ -111,19 +89,14 @@ public class RegistrationActivity extends AppCompatActivity implements UsernameC
 
         if (isUserNameEmpty || isUserPasswordEmpty) {
             if (isUserNameEmpty) {
-                setErrorTextUserLayout("Enter this field.");
+                TextInputLayoutUtils.setErrorText(binding.usernameInputLayout, "Enter this field!");
             }
             if (isUserPasswordEmpty) {
-                setErrorTextPasswordLayout("Enter this field.");
+                TextInputLayoutUtils.setErrorText(binding.passwordInputLayout, "Enter this field!");
             }
         } else {
-            launchOrderDrinkScreen(userName);
+            IntentUtility.navigateToMakeOrderActivity(this, userName);
         }
     }
 
-    private void launchOrderDrinkScreen(String userName) { //метод для переключения на MakeOrderActivity screen, если условие в методе isAllFieldsFill равен true.
-        Intent intent = new Intent(RegistrationActivity.this, MakeOrderActivity.class);
-        intent.putExtra("userName", userName);
-        startActivity(intent);
-    }
 }
