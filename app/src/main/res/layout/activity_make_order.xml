@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EDEDED"
-    tools:context=".MakeOrderActivity">
+    tools:context=".mainAppFiles.MakeOrderActivity">
 
     <TextView
         android:id="@+id/greeting_user"
