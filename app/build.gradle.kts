@@ -17,13 +17,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-<<<<<<< HEAD
-    buildFeatures {
-        viewBinding = true
-    }
-=======
 
->>>>>>> ce202f6e1cf56cebd58039df121b6c3139062b53
 
     buildTypes {
         release {
@@ -38,16 +32,16 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-<<<<<<< HEAD
+
     kotlinOptions {
-        jvmTarget = "1.8"
+        var jvmTarget = "1.8"
     }
-=======
+
     buildFeatures(){
         viewBinding = true
     }
 
->>>>>>> ce202f6e1cf56cebd58039df121b6c3139062b53
+
 }
 
 dependencies {
@@ -59,4 +53,8 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+}
+
+fun kotlinOptions(function: () -> Unit) {
+
 }

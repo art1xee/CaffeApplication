@@ -10,10 +10,9 @@ import com.example.caffeapplicationjava.databinding.ActivityOrderDetailBinding;
 
 
 public class OrderDetailActivity extends AppCompatActivity {
-<<<<<<< HEAD
-=======
+
     private ActivityOrderDetailBinding binding;
->>>>>>> ce202f6e1cf56cebd58039df121b6c3139062b53
+
 
     protected static final String EXTRA_USER_NAME = "userName";
     protected static final String EXTRA_DRINK = "drink";
@@ -23,11 +22,11 @@ public class OrderDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
+
         com.example.caffeapplicationjava.databinding.ActivityOrderDetailBinding binding = ActivityOrderDetailBinding.inflate(getLayoutInflater());
-=======
+
         binding = ActivityOrderDetailBinding.inflate(getLayoutInflater());
->>>>>>> ce202f6e1cf56cebd58039df121b6c3139062b53
+
         setContentView(binding.getRoot());
 
         Intent intent = getIntent();
